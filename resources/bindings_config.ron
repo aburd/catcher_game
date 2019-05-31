@@ -1,0 +1,6 @@
+(
+  axes: {
+    "catcher_guy": Emulated(pos: Key(Right), neg: Key(Left)),
+  },
+  actions: {},
+)
