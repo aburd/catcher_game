@@ -13,6 +13,7 @@ pub const CATCHER_GUY_WIDTH: f32 = 40.0;
 pub const CATCHER_GUY_HEIGHT: f32 = 20.0;
 pub const APPLE_WIDTH: f32 = 6.0;
 pub const APPLE_HEIGHT: f32 = 6.0;
+pub const APPLE_INITIAL_SPEED: f32 = 20.0;
 
 pub struct Catcher;
 
@@ -120,7 +121,7 @@ pub fn spawn_apple(world: &mut World, sprite_sheet: SpriteSheetHandle) {
     world
         .create_entity()
         .with(sprite_render.clone())
-        .with(Apple::new(0.7))
+        .with(Apple::new(APPLE_INITIAL_SPEED))
         .with(apple_transform)
         .build();
 }
