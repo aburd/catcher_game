@@ -54,7 +54,8 @@ fn main() -> amethyst::Result<()> {
             "catcher_guy_system",
             &["input_system"],
         )
-        .with(systems::AppleMoveSystem, "apple_system", &[]);
+        .with(systems::AppleMoveSystem, "apple_move_system", &[])
+        .with(systems::AppleEatSystem, "apple_eat_system", &[]);
 
     let mut game = Application::new("./", Catcher, game_data)?;
     game.run();

@@ -57,14 +57,18 @@ pub struct Apple {
     pub speed: f32,
     pub width: f32,
     pub height: f32,
+    pub min: f32,
+    pub max: f32,
 }
 
 impl Apple {
-    fn new(speed: f32) -> Self {
+    pub fn new(speed: f32) -> Self {
         Apple {
             speed,
             width: APPLE_WIDTH,
             height: APPLE_HEIGHT,
+            min: ARENA_HEIGHT * 0.9,
+            max: APPLE_HEIGHT * 0.5,
         }
     }
 }
