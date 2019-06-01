@@ -40,7 +40,7 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(TransformBundle::new())?
         .with_bundle(input_bundle)?
         .with(systems::CatcherGuySystem, "catcher_guy_system", &["input_system"])
-        .with(systems::AppleSystem, "apple_system", &[]);
+        .with(systems::AppleMoveSystem, "apple_system", &[]);
 
     let mut game = Application::new("./", Catcher, game_data)?;
     game.run();

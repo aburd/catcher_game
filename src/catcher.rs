@@ -3,8 +3,8 @@ use amethyst::core::transform::Transform;
 use amethyst::ecs::prelude::{Component, DenseVecStorage};
 use amethyst::prelude::*;
 use amethyst::renderer::{
-    Camera, PngFormat, Projection, SpriteRender, SpriteSheet,
-    SpriteSheetFormat, SpriteSheetHandle, Texture, TextureMetadata,
+    Camera, PngFormat, Projection, SpriteRender, SpriteSheet, SpriteSheetFormat, SpriteSheetHandle,
+    Texture, TextureMetadata,
 };
 
 pub const ARENA_WIDTH: f32 = 100.0;
@@ -26,7 +26,7 @@ impl SimpleState for Catcher {
         let spritesheet_handle_apple = load_apple_spritesheet(world);
         initialise_camera(world);
         initialise_catcher(world, spritesheet_handle_catcher);
-        initialise_apple(world, spritesheet_handle_apple);
+        spawn_apple(world, spritesheet_handle_apple);
     }
 }
 
@@ -77,7 +77,12 @@ fn initialise_camera(world: &mut World) {
     transform.set_z(1.0);
     world
         .create_entity()
-        .with(Camera::from(Projection::orthographic(0.0, ARENA_WIDTH, 0.0, ARENA_HEIGHT)))
+        .with(Camera::from(Projection::orthographic(
+            0.0,
+            ARENA_WIDTH,
+            0.0,
+            ARENA_HEIGHT,
+        )))
         .with(transform)
         .build();
 }
@@ -101,7 +106,7 @@ fn initialise_catcher(world: &mut World, sprite_sheet: SpriteSheetHandle) {
         .build();
 }
 
-fn initialise_apple(world: &mut World, sprite_sheet: SpriteSheetHandle) {
+pub fn spawn_apple(world: &mut World, sprite_sheet: SpriteSheetHandle) {
     let mut apple_transform = Transform::default();
     let x = ARENA_WIDTH / 2.0;
     let y = ARENA_HEIGHT * 0.9;
@@ -130,7 +135,6 @@ fn load_catcher_spritesheet(world: &mut World) -> SpriteSheetHandle {
             TextureMetadata::srgb_scale(),
             (),
             &texture_storage,
-
         )
     };
     let loader = world.read_resource::<Loader>();
@@ -154,7 +158,6 @@ fn load_apple_spritesheet(world: &mut World) -> SpriteSheetHandle {
             TextureMetadata::srgb_scale(),
             (),
             &texture_storage,
-
         )
     };
     let loader = world.read_resource::<Loader>();

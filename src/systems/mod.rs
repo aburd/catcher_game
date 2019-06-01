@@ -1,5 +1,5 @@
+mod apple_move;
 mod catcher_guy;
-mod apple;
 
+pub use self::apple_move::AppleMoveSystem;
 pub use self::catcher_guy::CatcherGuySystem;
-pub use self::apple::AppleSystem;
